@@ -2,5 +2,8 @@
   "name": "NodeSample",
   "version": "0.0.0",
   "description": "Node sample application",
-  "author": "Khiem Tong"
+  "author": "Khiem Tong",
+  "dependencies" : {
+  	"mime" : ">0.0.0"
+  }
 }

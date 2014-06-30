@@ -1,9 +1,7 @@
 var http = require('http');
 var fs = require('fs');
 var path = require('path');
-
-// detect mime types for files
-//var mime = require('mime');
+var mime = require('mime');
 
 var server = http.createServer(function(req, res) {
 	serveStatic(res, "index.html");
@@ -18,8 +16,8 @@ function serveStatic(response, absolutePath) {
 					send404(response);
 				} else {
 
-					// assume html, can make it more complicated by using mime types
-					response.writeHead(200, {'Content-Type' : 'text/html'});
+					var mimeType = mime.lookup(path.basename(absolutePath));
+					response.writeHead(200, {'Content-Type' : mimeType});
 					response.end(data);
 
 				}
