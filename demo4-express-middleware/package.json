@@ -1,0 +1,14 @@
+{
+  "name": "NodeSample",
+  "version": "0.0.0",
+  "description": "Node sample application",
+  "author": "Khiem Tong",
+  "dependencies" : {
+  	"mime" : ">0.0.0",
+  	"express" : ">0.0.0"
+  },
+  "devDependencies" : {
+  	"nodemon" : ">0.0.0",
+  	"node-inspector" : ">0.0.0"
+  }
+}
