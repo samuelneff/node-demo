@@ -1,4 +1,4 @@
-node-demo
+Node Demo
 =========
 
 # Agenda
