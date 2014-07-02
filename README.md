@@ -13,11 +13,11 @@ Node Demo
 
 # Setting up
 
-1. Create directory â€˜mkdir NodeSampleâ€™, cd â€˜NodeSampleâ€™
-2. Type â€˜npm initâ€™
-3. Edit created â€˜package.jsonâ€™
-4. Type â€˜npm installâ€™
-5. Create â€˜app.jsâ€™ server file
+1. Create directory ‘mkdir NodeSample’, cd ‘NodeSample’
+2. Type ‘npm init’
+3. Edit created ‘package.json’
+4. Type ‘npm install’
+5. Create ‘app.js’ server file
 6. Create webserver, and listen on port 8081
 
 # Console Application
