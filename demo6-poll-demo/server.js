@@ -1,11 +1,14 @@
 var express = require('express');
 var socketio = require('socket.io');
 var serveStatic = require('serve-static');
+var bodyParser = require('body-parser');
 var pollsApi = require('./lib/polls');
 
 var app = express();
 
 app.use(logger);
+app.use(bodyParser.json());
+
 
 app.use(serveStatic('public', {
 	'index' : false,
@@ -17,7 +20,7 @@ function setHeaders(res, path) {
 }
 
 
-app.get('/api/poll/create', pollsApi.create);
+app.post('/api/poll', pollsApi.create);
 app.get('/api/poll/:id', pollsApi.getPoll);
 
 

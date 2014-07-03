@@ -2,32 +2,30 @@ var polls = [];
 var pollsLookup = {};
 var pollId = 0;
 
-
-function createPoll(pollTitle, pollQuestion) {
+// curl -H "Content-Type: application/json" -d "{\"poll\" : {\"title\":\"poll title\",\"question\":\"poll question\"} }" http://localhost:3000/api/poll
+function createPoll(req, res, next) {
 	
-	if (pollsLookup[pollTitle] != null) {
-		return;
-	}
-
+	var data = req.body.poll;
+	
 	var newPoll = {};
-	newPoll.pollTitle = pollTitle;
-	newPoll.pollQuestion = pollQuestion;
+	newPoll.pollId = polls.length;
+	newPoll.pollTitle = data.title;
+	newPoll.pollQuestion = data.question;
 
 	polls.push(newPoll);
-	pollsLookup[pollTitle] = newPoll;
+
+	res.redirect('/api/poll/:' + pollId);
 }
 
-function getPoll(pollTitle) {
+// curl http://localhost:3000/api/poll/id
+function getPoll(req, res, next) {
 
-	if (pollsLookup[pollTitle]) {
-
-		return pollsLookup[pollTitle];
-
+	if (polls[req.params.id]) {
+		return res.json(polls[req.params.id]);
 	} else {
-
-		return null;
+		next(new Error("Poll with id " + req.params.id + " does not exist"));
 	}
-
+	
 }
 
 exports.create = createPoll;
