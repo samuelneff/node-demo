@@ -1,5 +1,4 @@
 var polls = [];
-var pollsLookup = {};
 var pollId = 0;
 
 // curl -H "Content-Type: application/json" -d "{\"poll\" : {\"title\":\"poll title\",\"question\":\"poll question\"} }" http://localhost:3000/api/poll
@@ -28,5 +27,12 @@ function getPoll(req, res, next) {
 	
 }
 
+// curl http://localhost:3000/api/polls
+// should paginate this call
+function listPolls(req, res, next) {
+	return res.json(polls);
+}
+
 exports.create = createPoll;
+exports.listPolls = listPolls;
 exports.getPoll = getPoll;

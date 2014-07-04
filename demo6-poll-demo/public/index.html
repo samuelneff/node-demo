@@ -1,9 +1,13 @@
-<html>
+<html ng-app="voteApp">
 <head>
+<script src="/js/bower_components/angular/angular.js"></script>
+<script src="/js/app.js"></script>
+<script src="/js/PollsService.js"></script>
+<script src="/js/PollListController.js"></script>
 </head>
-<body>
+<body ng-controller="PollListController">
 
-
+<button ng-click="getData()">Get Data</button>
 
 </body>
 </html>

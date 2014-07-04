@@ -16,11 +16,12 @@ app.use(serveStatic('public', {
 }))
 
 function setHeaders(res, path) {
-	res.attachment(path);
+	//res.attachment(path);
 }
 
 
 app.post('/api/poll', pollsApi.create);
+app.get('/api/polls', pollsApi.listPolls);
 app.get('/api/poll/:id', pollsApi.getPoll);
 
 
