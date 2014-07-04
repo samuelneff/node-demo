@@ -9,6 +9,17 @@ app.factory('PollsService', function($http) {
 			});
 
 			return promise;
+		},
+
+		create: function(newPoll) {
+
+			var toCreate = { "poll" : newPoll };
+			var promise = $http.post('/api/poll', toCreate).then(function(res) {
+				console.log(res);
+				return res.data;
+			});
+
+			return promise;
 		}
 
 	};

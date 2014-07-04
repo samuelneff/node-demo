@@ -9,5 +9,9 @@
 
 <button ng-click="getData()">Get Data</button>
 
+<ul ng-repeat="poll in polls">
+	<li>{{ poll.pollTitle }}</li>
+</ul>
+
 </body>
 </html>
