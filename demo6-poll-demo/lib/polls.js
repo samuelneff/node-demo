@@ -12,8 +12,7 @@ function createPoll(req, res, next) {
 	newPoll.pollQuestion = data.question;
 
 	polls.push(newPoll);
-
-	res.redirect('/api/poll/:' + pollId);
+	res.json(newPoll);
 }
 
 // curl http://localhost:3000/api/poll/id
