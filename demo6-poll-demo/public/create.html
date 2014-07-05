@@ -16,7 +16,7 @@
     Question: <input type="text" ng-model="poll.question" /><br />
     
     <div ng-repeat="answer in poll.answers"/>
-    <label>Answer {{index + 1}} </label> <input type="text" ng-model="answer.text" />
+    	<label>Answer {{ $index + 1 }}</label> <input type="text" ng-model="answer.text" />
     </div>
     <button ng-click="addAnswer()">add answer</button> 
     <button ng-click="reset()">reset</button>
