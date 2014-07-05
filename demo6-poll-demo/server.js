@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 app.use(serveStatic('public', {
 	'index' : ['index.html'],
 	'setHeaders' : setHeaders
-}))
+}));
 
 function setHeaders(res, path) {
 	// set any headers we need

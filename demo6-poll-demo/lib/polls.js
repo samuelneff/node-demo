@@ -10,6 +10,7 @@ function createPoll(req, res, next) {
 	newPoll.pollId = polls.length;
 	newPoll.pollTitle = data.title;
 	newPoll.pollQuestion = data.question;
+	newPoll.answers = data.answers;
 
 	polls.push(newPoll);
 	res.json(newPoll);

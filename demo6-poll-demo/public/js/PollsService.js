@@ -11,6 +11,15 @@ app.factory('PollsService', function($http) {
 			return promise;
 		},
 
+		getPoll: function(pollId) {
+			var promise = $http.get('/api/poll/' + pollId).then(function(res) {
+				console.log(res);
+				return res.data;
+			});
+
+			return promise;
+		},
+
 		create: function(newPoll) {
 
 			var toCreate = { "poll" : newPoll };
