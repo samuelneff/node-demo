@@ -11,14 +11,13 @@ app.use(bodyParser.json());
 
 
 app.use(serveStatic('public', {
-	'index' : false,
+	'index' : ['index.html'],
 	'setHeaders' : setHeaders
 }))
 
 function setHeaders(res, path) {
-	//res.attachment(path);
+	// set any headers we need
 }
-
 
 app.post('/api/poll', pollsApi.create);
 app.get('/api/polls', pollsApi.listPolls);
