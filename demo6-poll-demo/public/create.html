@@ -1,31 +1,13 @@
 <html ng-app="voteApp">
 <head>
-<script src="/js/bower_components/angular/angular.js"></script>
+<script src="/vendor/angular/angular.js"></script>
 <script src="/js/app.js"></script>
 <script src="/js/PollsService.js"></script>
 <script src="/js/PollController.js"></script>
 </head>
 <body>
 
-<div ng-controller="PollController">
 
-  <pre>{{ message }}</pre>
-
-  <form novalidate>
-    Poll name: <input type="text" ng-model="poll.title" /><br />
-    Question: <input type="text" ng-model="poll.question" /><br />
-    
-    <div ng-repeat="answer in poll.answers"/>
-    	<label>Answer {{ $index + 1 }}</label> <input type="text" ng-model="answer.text" />
-    </div>
-    <button ng-click="addAnswer()">add answer</button> 
-    <button ng-click="reset()">reset</button>
-    <button ng-click="create(poll)">create</button>    
-  </form>
-
-  <pre>form = {{poll | json}}</pre>
-  <pre>master = {{master | json}}</pre>
-</div>
 
 </body>
 </html>

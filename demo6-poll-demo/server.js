@@ -19,6 +19,10 @@ function setHeaders(res, path) {
 	// set any headers we need
 }
 
+app.get('/poll/:id', function(req, res) {
+	// how the heck do we pass the request to the response?
+	res.sendfile(__dirname + '/public/poll.html');
+});
 app.post('/api/poll', pollsApi.create);
 app.get('/api/polls', pollsApi.listPolls);
 app.get('/api/poll/:id', pollsApi.getPoll);
