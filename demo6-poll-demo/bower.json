@@ -6,6 +6,7 @@
     "Khiem Tong <tong.khiem@gmail.com>"
   ],
   "dependencies": {
-    "angular": "~1.2.19"
+    "angular": "~1.2.19",
+    "bootstrap": "~3.2.0"
   }
 }
