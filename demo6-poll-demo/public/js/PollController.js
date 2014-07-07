@@ -9,9 +9,11 @@ app.controller('PollController', ['$scope', 'PollsService', function($scope, Pol
 			console.log("created " + data);
 			$scope.message = "Poll created";
 
-			// not exactly sure why $digest cycle does not pick up changes to
-			// model in this promise
-			$scope.$apply();
+			// make sure changes are applied
+			if (!$scope.$$phase) {
+				$scope.$apply();
+			}
+
 			$scope.reset();			
 		});
 
