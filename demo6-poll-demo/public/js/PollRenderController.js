@@ -6,13 +6,16 @@ app.controller('PollRenderController', ['PollsService', '$rootScope', '$scope', 
         console.log(data);        
     });
 
+    SocketIoService.on('poll created', function() {
+        alert('Another poll created');
+    })
+
     $rootScope.$on('$routeChangeSuccess', function() {
         console.log("1: " + $routeParams.id);
         $scope.pollId = $routeParams.id;
 
 
         console.log($scope.pollId);
-
 
 
         PollsService.getPoll($scope.pollId).then(function(data) {

@@ -2,7 +2,7 @@ var express = require('express');
 var socketio = require('socket.io');
 var serveStatic = require('serve-static');
 var bodyParser = require('body-parser');
-var pollsApi = require('./lib/polls');
+
 
 var app = express();
 
@@ -24,12 +24,6 @@ app.get('/poll/:id', function(req, res) {
 });
 
 
-// API
-app.post('/api/poll', pollsApi.create);
-app.get('/api/polls', pollsApi.listPolls);
-app.get('/api/poll/:id', pollsApi.getPoll);
-
-
 var server = app.listen(3000, function() {
 	console.log ("Server started at %d", server.address().port);
 });
@@ -42,6 +36,13 @@ io.on('connection', function(socket){
 	socket.broadcast.emit('server ready', { 'okay' : 'ready' });
 
 });
+
+var pollsApi = require('./lib/polls')(io);
+
+// API
+app.post('/api/poll', pollsApi.createPoll);
+app.get('/api/polls', pollsApi.listPolls);
+app.get('/api/poll/:id', pollsApi.getPoll);
 
 
 

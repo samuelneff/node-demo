@@ -16,8 +16,12 @@
 {{ poll.pollQuestion }}<br />
 
 <div ng-repeat="answer in poll.answers">
-    {{ answer.text }}<br />
+    <input type="radio" name="group1" value="{{ answer.text }}">{{ answer.text }}<br />
 </div>
+
+Current results
+
+
 
 </body>
 </html>
