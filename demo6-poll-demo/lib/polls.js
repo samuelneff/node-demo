@@ -48,6 +48,27 @@ var exports = module.exports = function(passedInIo) {
 		// should paginate this call
 		listPolls: function listPolls(req, res, next) {
 			return res.json(polls);
+		},
+
+		updatePoll: function updatePoll(req, res, next) {
+
+			var data = req.body;
+			console.log('updating with: ', data);
+            if (polls[data.pollId]) {
+
+                polls[data.pollId].answers[data.answerIndex].voteCount++;
+
+                io.sockets.emit('poll updated', polls[data.pollId]);
+
+                res.json(polls[data.pollId]);
+
+            } else {
+
+                console.log('poll with id ' + data.pollId + ' does not exist.');
+                next(new Error('poll with id ' + data.pollId + ' does not exist.'));
+            }
+
+
 		}
 
 	};

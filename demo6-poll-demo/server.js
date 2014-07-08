@@ -43,6 +43,7 @@ var pollsApi = require('./lib/polls')(io);
 app.post('/api/poll', pollsApi.createPoll);
 app.get('/api/polls', pollsApi.listPolls);
 app.get('/api/poll/:id', pollsApi.getPoll);
+app.put('/api/poll/:id', pollsApi.updatePoll);
 
 
 

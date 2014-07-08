@@ -29,7 +29,18 @@ app.factory('PollsService', function($http) {
 			});
 
 			return promise;
-		}
+		},
+
+        submitVote: function(pollId, answerIndex) {
+
+            var toUpdate = { 'pollId': pollId, 'answerIndex': answerIndex };
+            var promise = $http.put('/api/poll/' + pollId, toUpdate).then(function(res) {
+                console.log(res);
+                return res.data;
+            });
+
+            return promise;
+        }
 
 	};
 
