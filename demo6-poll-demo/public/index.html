@@ -22,7 +22,7 @@
 	<div class="panel-body">
 	
 	<ul class="list-group">
-		<li ng-repeat="poll in polls" class="list-group-item">{{ poll.pollTitle }}</li>
+		<li ng-repeat="poll in polls" class="list-group-item"><a href="/poll/{{poll.pollId}}">{{ poll.pollTitle }}</a></li>
 	</ul>
 
 	</div>
@@ -30,34 +30,32 @@
 
 <!--<a href="/create.html">Create Poll</a>-->
 
-
 <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content" ng-controller="PollController">
 
     	<div class="panel panel-default">
-    		<div class="panel-body">
-
-				<h3>Create Poll</h3>	
+    		<div class="panel-heading"><h1>Create Poll</h1></div>	
+    		<div class="panel-body">				
 
 				<div class="form-group">
 					<label for="pollTitleInput">Poll Title</label>
 					<input type="text" id="pollTitleInput" ng-model="poll.title" class="form-control"/>
 				</div>
 				<div class="form-group">
-					<label for="pollQuestionInput">Question</label>
+					<label for="pollQuestionInput" >Question</label>
 					<input type="text" id="pollQuestionInput" ng-model="poll.question" class="form-control" />
 				</div>
 
 
-				<div ng-repeat="answer in poll.answers">
-					<label>Answer {{ $index + 1 }}</label> <input type="text" ng-model="answer.text" />
-				</div>
-
-				<button ng-click="addAnswer()">add answer</button> 
-				<button ng-click="reset()">reset</button>
-				<button ng-click="create(poll)">create</button>  				
-
+				<div ng-repeat="answer in poll.answers" class="input-group">
+					<span class="input-group-addon">Answer {{ $index + 1 }}</span><input type="text" class="form-control" ng-model="answer.text" />
+				</div>	
+			</div>
+			<div class="panel-footer">
+				<button ng-click="addAnswer()" class="btn btn-default">Add answer</button> 
+				<button ng-click="reset()" class="btn btn-default">Reset</button>
+				<button ng-click="create(poll)" class="btn btn-primary" data-dismiss="modal">Save</button>  						
 			</div>
 		</div>
    </div>
