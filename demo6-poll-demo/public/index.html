@@ -24,7 +24,7 @@
 	<div class="panel-body">
 	
 	<ul class="list-group">
-		<li ng-repeat="poll in polls" class="list-group-item"><a href="/poll/{{poll.pollId}}">{{ poll.pollTitle }}</a></li>
+		<li ng-repeat="poll in polls" class="list-group-item"><a href="/poll/{{poll.pollId}}">{{ poll.pollQuestion }}</a></li>
 	</ul>
 
 	</div>
@@ -40,10 +40,6 @@
     		<div class="panel-heading"><h1>Create Poll</h1></div>	
     		<div class="panel-body">				
 
-				<div class="form-group">
-					<label for="pollTitleInput">Poll Title</label>
-					<input type="text" id="pollTitleInput" ng-model="poll.title" class="form-control"/>
-				</div>
 				<div class="form-group">
 					<label for="pollQuestionInput" >Question</label>
 					<input type="text" id="pollQuestionInput" ng-model="poll.question" class="form-control" />
