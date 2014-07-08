@@ -10,6 +10,7 @@ app.controller('PollListController', ['$scope', 'PollsService', 'SocketIoService
         $scope.polls = polls;
     });
 
-	$scope.getData = fetch;
+    // fetch once when controller is loaded
+	fetch();
 
 }]);

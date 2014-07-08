@@ -28,7 +28,6 @@ var exports = module.exports = function(passedInIo) {
 
 			polls.push(newPoll);
 
-
 			io.sockets.emit('poll created', polls);
 
 			res.json(newPoll);
