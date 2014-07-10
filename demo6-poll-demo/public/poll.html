@@ -1,0 +1,41 @@
+<html ng-app="voteApp">
+<head>
+<script src="/vendor/jquery/dist/jquery.js"></script>
+<script src="/vendor/angular/angular.js"></script>
+<script src="/vendor/angular-route/angular-route.js"></script>
+<script src="/js/app.js"></script>
+<script src="/js/PollsService.js"></script>
+<script src="/js/PollRenderController.js"></script>
+<script src="/js/SocketIoService.js"></script>
+<script src="/vendor/socket.io.js"></script>
+<script src="/vendor/bootstrap/dist/js/bootstrap.js"></script>
+<script src="/vendor/socket.io.js"></script>
+<link rel="stylesheet" type="text/css" href="/vendor/bootstrap/dist/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/vendor/normalize-css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="/css/main.css" />
+</head>
+<body ng-controller="PollRenderController">
+
+<div class="panel panel-default">
+
+	<div class="panel-heading"><h3>{{poll.pollQuestion}}</h3></div>
+	<div class="panel-body">
+		<div class="control-group">
+		<ul class="list-question">
+			<li class="list-answer-item" ng-repeat="answer in poll.answers">
+				<label for="pollAnswer{{$index+1}}" class="radio">
+                    <input id="pollAnswer{{$index+1}}" type="radio" name="answer" ng-model="answerSelection.answerIndex" value="{{$index}}" />{{answer.text}}
+                </label>
+			</li>			
+		</ul>
+		</div>
+
+	</div>
+	<div class="panel-footer"><input type="submit" value="Submit vote" class="btn btn-primary" ng-click="submitVote()" /></div>
+
+</div>
+
+<pre>{{ poll | json }}</pre>
+
+</body>
+</html>

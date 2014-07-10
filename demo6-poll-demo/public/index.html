@@ -1,0 +1,64 @@
+<html ng-app="voteApp">
+<head>
+<script src="/vendor/angular/angular.js"></script>
+<script src="/vendor/angular-route/angular-route.js"></script>
+<script src="/vendor/jquery/dist/jquery.js"></script>
+<script src="/js/app.js"></script>
+<script src="/js/PollsService.js"></script>
+<script src="/js/SocketIoService.js"></script>
+<script src="/js/PollListController.js"></script>
+<script src="/js/PollController.js"></script>
+<script src="/vendor/bootstrap/dist/js/bootstrap.js"></script>
+<script src="/vendor/socket.io.js"></script>
+<link rel="stylesheet" type="text/css" href="/vendor/bootstrap/dist/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/vendor/normalize-css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="/css/main.css" />
+</head>
+<body ng-controller="PollListController">
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Create poll</button>
+		<button ng-click="getData()" class="btn btn-default">Refresh</button>		
+	</div>
+	<div class="panel-body">
+	
+	<ul class="list-group">
+		<li ng-repeat="poll in polls" class="list-group-item"><a href="/poll/{{poll.pollId}}">{{ poll.pollQuestion }}</a></li>
+	</ul>
+
+	</div>
+</div>
+
+<!--<a href="/create.html">Create Poll</a>-->
+
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" ng-controller="PollController">
+
+    	<div class="panel panel-default">
+    		<div class="panel-heading"><h1>Create Poll</h1></div>	
+    		<div class="panel-body">				
+
+				<div class="form-group">
+					<label for="pollQuestionInput" >Question</label>
+					<input type="text" id="pollQuestionInput" ng-model="poll.question" class="form-control" />
+				</div>
+
+
+				<div ng-repeat="answer in poll.answers" class="input-group">
+					<span class="input-group-addon">Answer {{ $index + 1 }}</span><input type="text" class="form-control" ng-model="answer.text" />
+				</div>	
+			</div>
+			<div class="panel-footer">
+				<button ng-click="addAnswer()" class="btn btn-default">Add answer</button> 
+				<button ng-click="reset()" class="btn btn-default">Reset</button>
+				<button ng-click="create(poll)" class="btn btn-primary" data-dismiss="modal">Save</button>  						
+			</div>
+		</div>
+   </div>
+  </div>
+</div>
+
+</body>
+</html>

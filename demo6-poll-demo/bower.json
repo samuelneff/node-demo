@@ -1,0 +1,15 @@
+{
+  "name": "demo6-chat-demo",
+  "version": "0.1.0",
+  "homepage": "https://github.com/blinemedical/node-demo",
+  "authors": [
+    "Khiem Tong <tong.khiem@gmail.com>"
+  ],
+  "dependencies": {
+    "angular": "~1.2.19",
+    "bootstrap": "~3.2.0",
+    "angular-route": "~1.2.19",
+    "socket.io-client": "~1.0.6",
+    "normalize-css": "~3.0.1"
+  }
+}
