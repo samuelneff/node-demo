@@ -1,0 +1,16 @@
+{
+  "name": "demo0-console-app",
+  "version": "0.0.0",
+  "homepage": "https://github.com/blinemedical/node-demo",
+  "authors": [
+    "Khiem Tong <tong.khiem@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
