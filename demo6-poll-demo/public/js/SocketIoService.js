@@ -1,4 +1,5 @@
-app.factory('SocketIoService', function($rootScope) {
+// Always use explicit dependency injection
+app.factory('SocketIoService', ['$rootScope', function($rootScope) {
 
 	var socket = io.connect();
 
@@ -18,4 +19,4 @@ app.factory('SocketIoService', function($rootScope) {
 
 	};
 
-});
+}]);
