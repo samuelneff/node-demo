@@ -1,4 +1,5 @@
-app.factory('PollsService', function($http) {
+// Always use explicit dependency injection
+app.factory('PollsService', ['$http', function($http) {
 
 	var pollsService = {
 
@@ -45,4 +46,4 @@ app.factory('PollsService', function($http) {
 	};
 
 	return pollsService;
-});
+}]);
