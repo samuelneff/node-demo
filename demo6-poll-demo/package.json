@@ -10,5 +10,5 @@
     "socket.io": "1.0.6",
     "underscore": "^1.6.0"
   },
-  "scripts": { "start" : "node server.js", "debug" : "node-debug server.js" }
+  "scripts": { "start" : "node server.js" }
 }
