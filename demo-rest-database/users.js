@@ -38,13 +38,17 @@ function getUserById(req, res)
        if(err)
        {
            console.log(err);
+           res.send(err);
            return;
        }
 
        if(row)
        {
            res.json({result:row});
+           return;
        }
+
+        res.json({result:null});
     });
 }
 
@@ -56,13 +60,17 @@ function getUserByUsername(req, res)
         if(err)
         {
             console.log(err);
+            res.send(err);
             return;
         }
 
         if(rows)
         {
             res.json({result:rows});
+            return;
         }
+
+        res.json({result:null});
     });
 }
 
@@ -74,19 +82,18 @@ function getFacultyUsers(req, res)
         if(err)
         {
             console.log(err);
+            res.send(err);
             return;
         }
 
         if(rows)
         {
             res.json({result:rows});
+            return;
         }
-    });
-}
 
-function getUser(req, res)
-{
-    res.json({result:'You did it'});
+        res.json({result:null});
+    });
 }
 
 module.exports = initialize;
