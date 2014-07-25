@@ -4,33 +4,36 @@ Node Demo
 # Agenda
 
 1. Setting up
-1. Console Application
-1. Node Web Basics
-2. Making a Web Server
-3. Modules in Node
-4. Restful API in Node
-5. Chat Client?
+2. Console Application
+3. Node Web Basics
+4. Making a Web Server
+5. Modules in Node
+6. Restful API in Node
+7. Socket.IO
 
 # Setting up
 
-1. Create directory ‘mkdir NodeSample’, cd ‘NodeSample’
-2. Type ‘npm init’
-3. Edit created ‘package.json’
-4. Type ‘npm install’
-5. Create ‘app.js’ server file
-6. Create webserver, and listen on port 8081
+1. Clone the repository
+
+	<pre>
+	git clone https://github.com/blinemedical/node-demo.git
+	</pre>
+
+2. Open demo directory.
+3. Run `npm install`
+4. Run `bower install`
 
 # Console Application
 
-
+Demonstrate how to write a simple console application using Node.
 
 # Node Web Basics
 
 ## Difference between node in terms of threading
 
-
-
 ## Code Example
+
+```javascript
 	var http = require('http'); 
 
 	var server = http.createServer(function(req, res) {
@@ -39,10 +42,12 @@ Node Demo
 
 	server.listen(8081);
 	console.log('server listening on 8081');
+```
 	
 
 # Making a Web Server
 
+```javascript
 	function serveStatic(response, absolutePath)
 	{
 		fs.exists(absolutePath, function(exists)
@@ -67,16 +72,25 @@ Node Demo
 			});
 		});
 	}
+```
 
 # Modules in Node
 
-Each file is its own scope, pass data through exports
+* Demonstrate how to create modules
+* Show how to use modules in different parts of application
+* Each file is its own scope, pass data through exports
 
 # Restful API with Database in Node
 
-Involves SQLite database
-Not Sequelize ORM
+* Show how to write a Restful API
+* Demonstrate how to connect to a SQLite database 
 
-# Chat Client?
+# Socket.IO
 
-Show off Socket.IO
+* Cover code sample and how everything is hooked up
+* Show off Socket.IO
+
+# Workshop
+
+* Build from existing demos or scratch.
+* Demos at the end of the workshop.
