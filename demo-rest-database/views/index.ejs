@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>RESTful Database Demo</title>
+    <style>
+        table
+        {
+            margin: 10px 5px;
+            width: 200px;
+            float: left;
+        }
+
+        div
+        {
+            clear:both;
+        }
+
+        input
+        {
+            margin-left: 5px;
+        }
+
+        #tableLayout
+        {
+            width: 420px;
+        }
+
+        #output
+        {
+            position: absolute;
+            left: 440px;
+            top: 0px;
+            margin: 20px;
+
+            overflow: auto;
+            font-family: monospace;
+        }
+
+        .data
+        {
+            width: 200px;
+            padding: 0px;
+        }
+
+        .button
+        {
+            width: 200px;
+        }
+
+        .actionGroup
+        {
+            margin: 20px 0px;
+        }
+    </style>
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script>
+        function getData(url, data)
+        {
+            url = url.replace('{0}', data);
+
+            var ajax = {};
+            ajax.url = url;
+            ajax.success = success;
+            //ajax.dataType = 'jsonp';
+            //ajax.jsonp = 'jsonp';
+            ajax.error = function(x, status, error){console.log(status, error);};
+            $.ajax(ajax);
+        }
+
+        function success(json)
+        {
+            if(json.err)
+            {
+                $('#output').html(json.err);
+                return;
+            }
+            
+            if(!json.result)
+            {
+                $('#output').html('No Results Returned');
+                return;
+            }
+
+            var newData = '';
+
+            if(json.result instanceof Array)
+            {
+                if(json.result.length == 0)
+                {
+                    $('#output').html('No Results Returned');
+                    return;
+                }
+
+                $.each(json.result, function(index, row)
+                                    {
+                                        newData += JSON.stringify(row) + '<br/>';
+                                    })
+            }
+            else
+            {
+                newData += JSON.stringify(json.result);
+            }
+
+            $('#output').html(newData);
+        }
+    </script>
+</head>
+<body>
+    <div id="tableLayout">
+        <table border="1">
+            <tr><th colspan="2">Users</th></tr>
+            <tr><td>UserID</td><td>int</td></tr>
+            <tr><td>Username</td><td>string</td></tr>
+            <tr><td>IsFaculty</td><td>bool</td></tr>
+        </table>
+        <table border="1">
+            <tr><th colspan="2">Courses</th></tr>
+            <tr><td>CourseID</td><td>int</td></tr>
+            <tr><td>CourseName</td><td>string</td></tr>
+            <tr><td>Active</td><td>bool</td></tr>
+        </table>
+        <table border="1">
+            <tr><th colspan="2">Xref_Users_Courses</th></tr>
+            <tr><td>UserID</td><td>int</td></tr>
+            <tr><td>CourseID</td><td>int</td></tr>
+        </table>
+        <table border="1">
+            <tr><th colspan="2">Grades</th></tr>
+            <tr><td>GradeID</td><td>int</td></tr>
+            <tr><td>GraderUserID</td><td>int</td></tr>
+            <tr><td>ScoredUserID</td><td>int</td></tr>
+            <tr><td>CourseID</td><td>int</td></tr>
+            <tr><td>Score</td><td>number</td></tr>
+        </table>
+    </div>
+
+    <div class="actionGroups">
+        <% actions.forEach(function(actionGroup) { %>
+        <div class="actionGroup">
+        <% actionGroup.forEach(function(action) { %>
+            <% if(action.dataType !== null) { %>
+            <input class="button" type="button" value="<%= action.name %>:" onclick="getData('<%= action.url %>', $('#<%= action.id %>').val())" />
+            <input class="data" type="<%= action.dataType %>" id="<%= action.id %>"/>
+            <br/>
+            <% } else { %>
+            <input class="button" type="button" value="<%= action.name %>" onclick="getData('<%= action.url %>')" /> <br/>
+            <% } %>
+        <% }) %>
+        </div>
+        <% }) %>
+    </div>
+
+    <div id="output">
+    </div>
+</body>
+</html>

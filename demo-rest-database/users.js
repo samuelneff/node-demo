@@ -4,19 +4,25 @@ function initialize(app, injectedDb)
 {
     //Order matters!
     app.get('/users/faculty', getFacultyUsers); // users/faculty routes to getFacultyUsers
-    app.get('/users/:id', checkNumeric, getUserById); // users/___ routes to getUserById
+    app.get('/users/:id', checkNumeric, getUserById); // users/___ routes to getUserById, checked first by checkNumeric
     app.get('/users/search/:username', getUserByUsername);
-    app.post('/users/', getUser);
 
     db = injectedDb;
 
-    //set up actions
-    var actions = app.get('actions');
-    actions.push({route:'/users/{0}', dataType:['int'], name:'Get User By ID'});
-    actions.push({route:'/users/search/{0}', dataType:['string'], name:'Search for User by Username'});
-    actions.push({route:'/users/faculty', dataType:null, name:'Get Faculty Users'});
-    app.set('actions');
+    console.log(app.get('actions'));
 }
+
+function getActions()
+{
+    //set up actions
+    var userActions = [];
+    userActions.push({url:'/users/{0}', dataType:'number', name:'Get User By ID', id:'searchUserId'});
+    userActions.push({url:'/users/search/{0}', dataType:'string', name:'Search for User by Username', id:'searchUsername'});
+    userActions.push({url:'/users/faculty', dataType:null, name:'Get Faculty Users', id:'getFacultyUsers'});
+
+    return userActions;
+}
+
 
 function checkNumeric(req, res, next)
 {
@@ -96,4 +102,5 @@ function getFacultyUsers(req, res)
     });
 }
 
-module.exports = initialize;
+module.exports.init = initialize;
+module.exports.getActions = getActions;

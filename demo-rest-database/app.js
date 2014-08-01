@@ -1,37 +1,30 @@
-var express = require('express');
+//default Node modules
 var http = require('http');
 
-//needs initialization
+//Modules that need initialzation
 var sqlite3 = require('sqlite3').verbose();
+var express = require('express');
 var users = require('./users');
 
+//
 var app = express();
 var db = new sqlite3.Database('db/courses.dat');
 
-app.set('actions', []);
+users.init(app, db);
 
-users(app, db);
+//Define actions
+var actions = [];
+actions.push(users.getActions());
 
-//app.configure(function(){
-//    app.set('port', process.env.PORT || 3000);
-//    app.set('views', __dirname + '/views');
-//    app.use(express.favicon());
-//    app.use(express.logger('dev'));
-//    app.use(express.bodyParser());
-//    app.use(express.methodOverride());
-//    app.use(app.router);
-//    app.use(express.static(path.join(__dirname, 'public')));
-//});
-
-
+//Configure the app
 app.set('port', process.env.PORT || 3000);
-app.set('actions', []);
 app.set('view engine', 'ejs');
 
 app.get('/', function displayHome(req, res)
 {
-    //res.type('html');
-    res.render('index');
+    var appParams = {};
+    appParams.actions = actions;
+    res.render('index', appParams);
 });
 
 
