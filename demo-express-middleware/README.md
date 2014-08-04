@@ -14,7 +14,19 @@ var auth = require('/lib/auth');
 
 # Express (Middleware)
 
+Why middleware? When handling a request you often a several different isolated tasks that need to be taken care of.
 
+For example, you might...
+
+* Log the request
+* Parse the body
+* Check request parameters
+* Authorize the request
+* Finally handle the request and send it back
+
+If you start parsing the request to do all the tests the code starts looking pretty hairy. Middleware is a _control flow_
+mechanism to make it easier for you to handle these tasks in a structured manner. Each middleware component is a function that
+does its job and then calls `next()` to send the `request` and `response` object to the next part of flow.
 
 # Tasks
 
