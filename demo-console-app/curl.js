@@ -16,13 +16,13 @@ execute(command);
 
 function execute(command) {
 
+	var url = args[1];
+
 	switch(command) {
 
 		case "get":
 
 			console.log("http get execute");
-
-			var url = args[1];
 
 			request.get(url, function(error, response, body) {
 				console.log(body);
@@ -34,7 +34,7 @@ function execute(command) {
 			console.log("http post execute");
 
 			var filePath = args[1];
-			var url = args[2];
+			url = args[2];
 
 			fs.createReadStream(filePath).pipe(request.post(url, function(error, response, body) {
 				console.log(body);

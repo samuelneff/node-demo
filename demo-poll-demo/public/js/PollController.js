@@ -5,7 +5,7 @@ app.controller('PollController', ['$scope', 'PollsService', function($scope, Pol
 
 	$scope.create = function(poll) {
 
-		PollsService.create(poll).then(function(data) {
+		PollsService.createPoll(poll).then(function(data) {
 			console.log("created " + data);
 			$scope.message = "Poll created";
 
@@ -14,18 +14,18 @@ app.controller('PollController', ['$scope', 'PollsService', function($scope, Pol
 				$scope.$apply();
 			}
 
-			$scope.reset();			
+			$scope.reset();
 		});
 
-	}
+	};
 
 	$scope.reset = function() {
-		$scope.poll = angular.copy($scope.master);	
-	}
-	
+		$scope.poll = angular.copy($scope.master);
+	};
+
 	$scope.addAnswer = function() {
 		$scope.poll.answers.push({'text' : 'Default answer'});
-	}
+	};
 
 	$scope.reset();
 

@@ -13,15 +13,13 @@ Node Demo
 
 # Setting up
 
-1. Clone the repository
-
+1. Clone your fork of the repository.
 	<pre>
 	git clone https://github.com/blinemedical/node-demo.git
 	</pre>
-
 2. Open demo directory.
-3. Run `npm install`
-4. Run `bower install`
+3. Run `npm install` with the demo directory.
+4. Run `bower install` within the demo directory.
 
 # Console Application
 

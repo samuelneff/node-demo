@@ -21,7 +21,7 @@ app.factory('PollsService', ['$http', function($http) {
 			return promise;
 		},
 
-		create: function(newPoll) {
+		createPoll: function(newPoll) {
 
 			var toCreate = { "poll" : newPoll };
 			var promise = $http.post('/api/poll', toCreate).then(function(res) {
