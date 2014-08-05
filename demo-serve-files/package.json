@@ -3,7 +3,12 @@
   "version": "0.0.0",
   "description": "Node sample application",
   "author": "Khiem Tong",
-  "dependencies" : {
-  	"mime" : ">0.0.0"
-  }
+  "dependencies": {
+    "underscore": "^1.6.0",
+    "mime": "^1.2.11"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engine": "node 0.10.26"
 }
