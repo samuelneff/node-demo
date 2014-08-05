@@ -1,6 +1,5 @@
 var express = require('express');
 var socketio = require('socket.io');
-var serveStatic = require('serve-static');
 var bodyParser = require('body-parser');
 var logger = require('./lib/logger');
 
@@ -9,10 +8,7 @@ var app = express();
 app.use(logger);
 app.use(bodyParser.json());
 
-app.use(serveStatic('public', {
-	'index' : ['index.html'],
-	'setHeaders' : setHeaders
-}));
+app.use(express.static('public'));
 
 function setHeaders(res, path) {
 	// set any headers we need
@@ -23,7 +19,7 @@ app.get('/poll/:id', function(req, res) {
 });
 
 
-var server = app.listen(3000, function() {
+var server = app.listen(process.env.PORT || 3000, function() {
 	console.log ("Server started at %d", server.address().port);
 });
 

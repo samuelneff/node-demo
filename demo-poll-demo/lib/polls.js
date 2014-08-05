@@ -51,24 +51,25 @@ var exports = module.exports = function(passedInIo) {
 		updatePoll: function updatePoll(req, res, next) {
 
 			var data = req.body;
+			var poll = polls[data.pollId];
+
 			console.log('updating with: ', data);
-            if (polls[data.pollId]) {
 
-                polls[data.pollId].answers[data.answerIndex].voteCount++;
+      if (poll) {
 
-                io.sockets.emit('poll updated', polls[data.pollId]);
+          poll.answers[data.answerIndex].voteCount++;
 
-                res.json(polls[data.pollId]);
+          io.sockets.emit('poll updated', poll);
 
-            } else {
+          res.json(poll);
 
-                console.log('poll with id ' + data.pollId + ' does not exist.');
-                next(new Error('poll with id ' + data.pollId + ' does not exist.'));
-            }
+      } else {
 
-
+          console.log('poll with id ' + data.pollId + ' does not exist.');
+          next(new Error('poll with id ' + data.pollId + ' does not exist.'));
+      }
 		}
 
 	};
 
-}
+};
