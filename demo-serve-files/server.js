@@ -10,14 +10,15 @@ var server = http.createServer(function(req, res) {
 
 	if (req.url == "/") {
 
-		listDir(res, ".");
+		listDir(res, ".", "");
 
 	} else {
+
 		var absolutePath = __dirname + req.url;
 		fs.stat(absolutePath, function(err, stat) {
 
 			if (stat.isDirectory()) {
-					listDir(res, absolutePath);
+					listDir(res, absolutePath, req.url);
 			} else {
 					serveStatic(res, absolutePath);
 			}
@@ -30,7 +31,7 @@ var server = http.createServer(function(req, res) {
 
 });
 
-function listDir(res, dirPath) {
+function listDir(res, dirPath, relativePath) {
 
 	fs.readdir(dirPath, function(err, data) {
 		if (err) {
@@ -43,7 +44,7 @@ function listDir(res, dirPath) {
 		});
 
 		var links = _.reduce(filteredData, function(allLinks, item) {
-			return allLinks + "<a href='" + item + "'>" + item +"</a><br />";
+			return allLinks + "<a href='" + relativePath + "/" + item + "'>" + item +"</a><br />";
 		}, "");
 
 		res.writeHead(200, {'Content-Type' : 'text/html'});

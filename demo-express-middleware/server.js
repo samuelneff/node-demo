@@ -13,11 +13,16 @@ var app = express();
 // request -> middleware (as many as you want) -> node server response
 app.use(logger);
 
+// what happens if we don't call next?
+// app.use(auth.goNoFurther);
+
 // stop requests at the point where it's added in middleware stack
 app.use(auth.denied);
 
+
 // after the middleware, the router is called and handles the request
-// but it this case auth.denied stops us from getting here try commenting out the auth.denied middleware
+// but in this case auth.denied stops us from getting here
+// try commenting out the auth.denied middleware
 app.get('/', function(req, res) {
 	res.send('Hello World!');
 });
