@@ -1,5 +1,6 @@
 app.controller('PollController', ['$scope', 'PollsService', function($scope, PollsService) {
 
+	// setup the template question that will be copied to initialize (or reset) new polls
 	$scope.master = { 'title' : 'Default title', 'question' : 'Default question', 'answers' : [ { 'text' : 'Default answer'} ] };
 	$scope.message = "";
 

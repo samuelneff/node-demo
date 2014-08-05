@@ -22,9 +22,7 @@ app.controller('PollRenderController', ['PollsService', '$rootScope', '$scope', 
         console.log("1: " + $routeParams.id);
         $scope.pollId = $routeParams.id;
 
-
         console.log($scope.pollId);
-
 
         PollsService.getPoll($scope.pollId).then(function(data) {
             console.log(data);
