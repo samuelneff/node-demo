@@ -20,3 +20,10 @@ This demo demonstrates how to hook up basic CRUD with an Angular front end.
 |**\public\vendor**	  |	vendor javascript files				|
 |**server.js** 		  |	main node entry point				|
 
+# Points of Interest
+
+* Ease of creating a restful API
+* Use of angular routing to get URL parameters, and why it is necessary
+* All data is retrieved from service calls
+* Separation of layers 
+* Socket.IO for live updates

@@ -3,48 +3,40 @@ var fs = require('fs');
 var http = require('http');
 var request = require('request');
 
-// first argument is always node.ee
+// first argument is always node.exe
 // second argument is always name of your script
 // remove them since won't don't need them
 var args = process.argv.slice(2);
 
-console.log(args);
+function execute() {
 
-var command = _.first(args);
+	var url = args[0];
 
-execute(command);
-
-function execute(command) {
-
-	switch(command) {
-
-		case "get":
-
-			console.log("http get execute");
-
-			var url = args[1];
-
+	if (args.length == 1)
+	{
 			request.get(url, function(error, response, body) {
 				console.log(body);
 			});
-			break;
-
-		case "post":
-
-			console.log("http post execute");
-
-			var filePath = args[1];
-			var url = args[2];
+	}
+	else if (args.length == 2)
+	{
+			var filePath = args[0];
+			url = args[1];
 
 			fs.createReadStream(filePath).pipe(request.post(url, function(error, response, body) {
 				console.log(body);
 			}));
-
-			break;
-
-		default:
-			console.log("Invalid command " + command);
-
+	}
+	else
+	{
+			printUsage();
 	}
 
 }
+
+function printUsage() {
+	console.log("node curl <url>	- makes a http GET request to the specified URL");
+	console.log("node curl <path-to-json-file> <url>	- makes a http POST request");
+}
+
+execute();

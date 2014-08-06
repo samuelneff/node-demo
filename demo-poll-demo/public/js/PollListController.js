@@ -6,9 +6,9 @@ app.controller('PollListController', ['$scope', 'PollsService', 'SocketIoService
 		});
 	}
 
-    SocketIoService.on('poll created', function(polls) {
-        $scope.polls = polls;
-    });
+	SocketIoService.on('poll created', function(polls) {
+	    $scope.polls = polls;
+	});
 
     // fetch once when controller is loaded
 	fetch();

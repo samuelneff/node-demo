@@ -13,15 +13,13 @@ Node Demo
 
 # Setting up
 
-1. Clone the repository
-
+1. Clone your fork of the repository.
 	<pre>
 	git clone https://github.com/blinemedical/node-demo.git
 	</pre>
-
 2. Open demo directory.
-3. Run `npm install`
-4. Run `bower install`
+3. Run `npm install` with the demo directory.
+4. Run `bower install` within the demo directory.
 
 # Console Application
 
@@ -29,12 +27,15 @@ Demonstrate how to write a simple console application using Node.
 
 # Node Web Basics
 
+Node is basically a control loop that delegates out tasks and waits for events to be finished and signals
+to the callbacks.
+
 ## Difference between node in terms of threading
 
 ## Code Example
 
 ```javascript
-	var http = require('http'); 
+	var http = require('http');
 
 	var server = http.createServer(function(req, res) {
 		//server code
@@ -43,7 +44,7 @@ Demonstrate how to write a simple console application using Node.
 	server.listen(8081);
 	console.log('server listening on 8081');
 ```
-	
+
 
 # Making a Web Server
 
@@ -57,15 +58,15 @@ Demonstrate how to write a simple console application using Node.
 				send404(response);
 				return;
 			}
-				
+
 			fs.readFile(absolutePath, function (err, data)
 			{
-				if (err) 
+				if (err)
 				{
 					send404(response);
 					return;
 				}
-				
+
 				var mimeType = mime.lookup(path.basename(absolutePath));
 				response.writeHead(200, {'Content-Type' : mimeType});
 				response.end(data);
@@ -83,7 +84,7 @@ Demonstrate how to write a simple console application using Node.
 # Restful API with Database in Node
 
 * Show how to write a Restful API
-* Demonstrate how to connect to a SQLite database 
+* Demonstrate how to connect to a SQLite database
 
 # Socket.IO
 

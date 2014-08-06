@@ -1,5 +1,10 @@
 <html ng-app="voteApp">
 <head>
+<!--
+
+In WebStorm all of the js/vendor references show up as missing. This can be resolved by adding demo-poll-demo as a source root in settings.
+
+-->	
 <script src="/vendor/jquery/dist/jquery.js"></script>
 <script src="/vendor/angular/angular.js"></script>
 <script src="/vendor/angular-route/angular-route.js"></script>
@@ -9,7 +14,7 @@
 <script src="/js/SocketIoService.js"></script>
 <script src="/vendor/socket.io.js"></script>
 <script src="/vendor/bootstrap/dist/js/bootstrap.js"></script>
-<script src="/vendor/socket.io.js"></script>
+<script src="/vendor/socket.io-client/socket.io.js"></script>
 <link rel="stylesheet" type="text/css" href="/vendor/bootstrap/dist/css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="/vendor/normalize-css/normalize.css" />
 <link rel="stylesheet" type="text/css" href="/css/main.css" />
@@ -26,7 +31,7 @@
 				<label for="pollAnswer{{$index+1}}" class="radio">
                     <input id="pollAnswer{{$index+1}}" type="radio" name="answer" ng-model="answerSelection.answerIndex" value="{{$index}}" />{{answer.text}}
                 </label>
-			</li>			
+			</li>
 		</ul>
 		</div>
 

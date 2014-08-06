@@ -1,7 +1,5 @@
 var _ = require('underscore');
 
-
-
 // use dependency injection to inject socket
 var exports = module.exports = function(passedInIo) {
 
@@ -12,15 +10,15 @@ var exports = module.exports = function(passedInIo) {
 	return {
 
 		// curl -H "Content-Type: application/json" -d "{\"poll\" : {\"title\":\"poll title\",\"question\":\"poll question\"} }" http://localhost:3000/api/poll
-		createPoll: function createPoll(req, res, next) {			
+		createPoll: function createPoll(req, res, next) {
 			var data = req.body.poll;
-				
+
 			var newPoll = {};
 			newPoll.pollId = polls.length;
 			newPoll.pollTitle = data.title;
 			newPoll.pollQuestion = data.question;
-			
-			_.map(data.answers, function(answer) {
+
+			_.each(data.answers, function(answer) {
 				answer.voteCount = 0;
 			});
 
@@ -41,7 +39,7 @@ var exports = module.exports = function(passedInIo) {
 			} else {
 				next(new Error("Poll with id " + req.params.id + " does not exist"));
 			}
-			
+
 		},
 
 		// curl http://localhost:3000/api/polls
@@ -53,30 +51,25 @@ var exports = module.exports = function(passedInIo) {
 		updatePoll: function updatePoll(req, res, next) {
 
 			var data = req.body;
+			var poll = polls[data.pollId];
+
 			console.log('updating with: ', data);
-            if (polls[data.pollId]) {
 
-                polls[data.pollId].answers[data.answerIndex].voteCount++;
+      if (poll) {
 
-                io.sockets.emit('poll updated', polls[data.pollId]);
+          poll.answers[data.answerIndex].voteCount++;
 
-                res.json(polls[data.pollId]);
+          io.sockets.emit('poll updated', poll);
 
-            } else {
+          res.json(poll);
 
-                console.log('poll with id ' + data.pollId + ' does not exist.');
-                next(new Error('poll with id ' + data.pollId + ' does not exist.'));
-            }
+      } else {
 
-
+          console.log('poll with id ' + data.pollId + ' does not exist.');
+          next(new Error('poll with id ' + data.pollId + ' does not exist.'));
+      }
 		}
 
 	};
 
-}
-
-
-
-
-
-
+};
