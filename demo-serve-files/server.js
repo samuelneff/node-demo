@@ -17,6 +17,10 @@ var server = http.createServer(function(req, res) {
 		var absolutePath = __dirname + req.url;
 		fs.stat(absolutePath, function(err, stat) {
 
+			if (!stat) {
+				send404(res);
+			}
+
 			if (stat.isDirectory()) {
 					listDir(res, absolutePath, req.url);
 			} else {
@@ -96,4 +100,4 @@ function send404(response)
 }
 
 server.listen(3000);
-console.log('server listening on 8081');
+console.log('server listening on 3000');
