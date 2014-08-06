@@ -95,5 +95,5 @@ function send404(response)
 	response.end('404 : not found');
 }
 
-server.listen(8081);
+server.listen(3000);
 console.log('server listening on 8081');
