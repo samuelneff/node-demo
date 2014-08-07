@@ -14,7 +14,7 @@ function initialize(app, injectedDb)
 
 function getActions()
 {
-    //set up actions
+    //set up actions that will automatically turn into buttons
     var userActions = [];
     userActions.push({url:'/users/{0}', dataType:'number', name:'Get User By ID', id:'searchUserId'});
     userActions.push({url:'/users/search/{0}', dataType:'string', name:'Search for User by Username', id:'searchUsername'});
@@ -23,9 +23,14 @@ function getActions()
     return userActions;
 }
 
-
+//Middleware to validate that ID that you pass in is actually numeric
 function checkNumeric(req, res, next)
 {
+    //RegEx explanation:
+    // ^: From the start of the line
+    // [0-9]: there must be a character that is a digit 0-9
+    // +: repeated one or more times
+    // $: until the end of the line
     if(req.params.id.match(/^[0-9]+$/))
     {
         next();
@@ -102,5 +107,6 @@ function getFacultyUsers(req, res)
     });
 }
 
+//don't forget your module.exports
 module.exports.init = initialize;
 module.exports.getActions = getActions;
