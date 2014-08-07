@@ -25,5 +25,10 @@ This demo demonstrates how to hook up basic CRUD with an Angular front end.
 * Ease of creating a restful API
 * Use of angular routing to get URL parameters, and why it is necessary
 * All data is retrieved from service calls
-* Separation of layers 
+* Separation of layers
 * Socket.IO for live updates
+
+# Common Errors
+
+* Angular not working or no styling? You probably forgot to do a `bower install`.
+* Error regarding missing module? Run `npm install`

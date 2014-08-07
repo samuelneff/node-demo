@@ -10,10 +10,6 @@ app.use(bodyParser.json());
 
 app.use(express.static('public'));
 
-function setHeaders(res, path) {
-	// set any headers we need
-}
-
 app.get('/poll/:id', function(req, res) {
 	res.sendfile(__dirname + '/public/poll.html');
 });

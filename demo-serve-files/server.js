@@ -15,22 +15,32 @@ var server = http.createServer(function(req, res) {
 	} else {
 
 		var absolutePath = __dirname + req.url;
-		fs.stat(absolutePath, function(err, stat) {
 
-			if (!stat) {
+		fs.exists(absolutePath, function(exists) {
+
+			if (!exists) {
 				send404(res);
 			}
 
-			if (stat.isDirectory()) {
-					listDir(res, absolutePath, req.url);
-			} else {
-					serveStatic(res, absolutePath);
-			}
+			fs.stat(absolutePath, function(err, stat) {
+
+					if (err) {
+						console.log("Error occurred retrieving item " + absolutePath);
+						return;
+					}
+
+					if (stat.isDirectory()) {
+							listDir(res, absolutePath, req.url);
+					} else {
+							serveStatic(res, absolutePath);
+					}
+
+			});
+
+			console.log(req.url);
+			serveStatic(res, __dirname + req.url);
 
 		});
-
-		console.log(req.url);
-		serveStatic(res, __dirname + req.url);
 	}
 
 });
@@ -96,7 +106,7 @@ function serveStatic(response, absolutePath)
 function send404(response)
 {
 	response.writeHead(404, {'Content-Type' : 'text/plain'});
-	response.end('404 : not found');
+	response.end('404 : Resource not found');
 }
 
 server.listen(3000);
