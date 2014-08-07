@@ -21,16 +21,25 @@ Node Demo
 3. Run `npm install` with the demo directory.
 4. Run `bower install` within the demo directory.
 
-# Console Application
+# Introduce Node
+
+* Async, event driven JavaScript on the frontend (https://developer.mozilla.org/en-US/docs/Web/API/Event)
+* Async, event driven JavaScript on the backend (http://nodejs.org/api/events.html).
+* One language
+* V8 engine, fast JS interpreter built by Google
+* Single process (thread), shared state vs traditional webservers (thread per request)
+* Event loop
+* Build up abstractions
+* Node REPL
+* NPM, dependency management
+* Ecosystem
+
+
+## Console Application
 
 Demonstrate how to write a simple console application using Node.
 
 # Node Web Basics
-
-Node is basically a control loop that delegates out tasks and waits for events to be finished and signals
-to the callbacks.
-
-## Difference between node in terms of threading
 
 ## Code Example
 
@@ -93,5 +102,6 @@ to the callbacks.
 
 # Workshop
 
-* Build from existing demos or scratch.
+* Option 1, enhance existing demos
+* Option 2, build from scratch (a plug.dj clone)
 * Demos at the end of the workshop.
