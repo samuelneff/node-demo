@@ -37,3 +37,7 @@ For example, the included JSON file can be used to test the included poll demo.
 
 * API access to operating system (http://nodejs.org/documentation/api/)
 * CLI tools
+
+# Enhancement Ideas
+
+* Extend console application to test well-known API (twitter, etc.)

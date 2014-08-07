@@ -32,3 +32,8 @@ This demo demonstrates how to hook up basic CRUD with an Angular front end.
 
 * Angular not working or no styling? You probably forgot to do a `bower install`.
 * Error regarding missing module? Run `npm install`
+
+# Tasks
+
+* Prevent multiple votes per IP for each poll
+* Deletion of polls
