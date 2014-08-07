@@ -17,6 +17,7 @@ var exports = module.exports = function(passedInIo) {
 			newPoll.pollId = polls.length;
 			newPoll.pollTitle = data.title;
 			newPoll.pollQuestion = data.question;
+      newPoll.usersVoted = {};
 
 			_.each(data.answers, function(answer) {
 				answer.voteCount = 0;
@@ -57,10 +58,15 @@ var exports = module.exports = function(passedInIo) {
 
       if (poll) {
 
-          poll.answers[data.answerIndex].voteCount++;
-
-          io.sockets.emit('poll updated', poll);
-
+          if (poll.usersVoted[req.user.id]) {
+            io.sockets.emit('cheater', displayName(req) + ' tried to cheat! Cheater! Cheater! Cheater!');
+          } else if (req.user._json.created_at.substr(0, 10) >= '2014-08-07') {
+            io.sockets.emit('cheater', displayName(req) + ' is trying hard to cheat. Account was created today.');
+          } else {
+            poll.usersVoted[req.user.id] = true;
+            poll.answers[data.answerIndex].voteCount++;
+            io.sockets.emit('poll updated', poll);
+          }
           res.json(poll);
 
       } else {
@@ -73,3 +79,8 @@ var exports = module.exports = function(passedInIo) {
 	};
 
 };
+
+function displayName(req) {
+  var name = req.user.displayName;
+  return name == null ? req.user.username : name;
+}

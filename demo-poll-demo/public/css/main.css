@@ -13,3 +13,12 @@ body {
 	
 	list-style-type: none;
 }
+
+.warnings {
+    color: darkred;
+    font-weight: bold;
+}
+
+.warnings > div {
+    margin-bottom: 8px;
+}

@@ -18,6 +18,10 @@ app.controller('PollRenderController', ['PollsService', '$rootScope', '$scope', 
         }
     });
 
+  SocketIoService.on('cheater', function(warning) {
+    $('.warnings').append($('<div/>').text(warning));
+  });
+
     $rootScope.$on('$routeChangeSuccess', function() {
         console.log("1: " + $routeParams.id);
         $scope.pollId = $routeParams.id;
